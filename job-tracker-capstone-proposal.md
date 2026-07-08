@@ -136,20 +136,20 @@ Job Category
 Database Collections
 Users
 {
-  name,
-  email,
-  password
+name,
+email,
+password
 }
 Saved Jobs
 {
-  userId,
-  jobId,
-  title,
-  company,
-  location,
-  salary,
-  status,
-  savedDate
+userId,
+jobId,
+title,
+company,
+location,
+salary,
+status,
+savedDate
 }
 API Example
 Request
