@@ -1,227 +1,283 @@
-Capstone Project Proposal
-Project Title
+# Capstone Project Proposal
 
-Job Tracker Platform
+## Project Title
 
-Project Overview
+**Job Tracker Platform**
+
+---
+
+## Project Overview
 
 The Job Tracker Platform is a full-stack web application that helps job seekers search for jobs, save interesting opportunities, and manage their job applications in one place.
 
-Users will be able to:
+### Users will be able to:
 
-Create an account
-Log in securely
-Search jobs using the Adzuna API
-Save jobs
-Apply to jobs
-Track application status
-Delete saved jobs
-Update application progress
+- Create an account
+- Log in securely
+- Search jobs using the Adzuna API
+- Save jobs
+- Apply to jobs
+- Track application status
+- Delete saved jobs
+- Update application progress
 
 The application will use real-time job listings from the Adzuna API and store user information in MongoDB.
 
-Problem Statement
+---
 
-Many job seekers use several different websites to search for jobs and manually track applications using spreadsheets or notes. This process is time-consuming and difficult to organize.
+## Problem Statement
+
+Many job seekers use several different websites to search for jobs and manually track their applications using spreadsheets or notes. This process is time-consuming and difficult to organize.
 
 The Job Tracker Platform solves this problem by combining job searching and application tracking into one application.
 
-Target Users
-Students
-Software Developers
-Job Seekers
-Career Changers
-New Graduates
-Technologies Used
-Frontend
-React.js
-HTML5
-CSS3
-JavaScript
-Axios
-React Router DOM
-Backend
-Node.js
-Express.js
-Database
-MongoDB
-Mongoose
-Authentication
-JWT Authentication
-bcrypt
-External API
-API Name
+---
 
-Adzuna Job Search API
+## Target Users
 
-Base API
+- Students
+- Software Developers
+- Job Seekers
+- Career Changers
+- New Graduates
+
+---
+
+## Technologies Used
+
+### Frontend
+
+- React.js
+- HTML5
+- CSS3
+- JavaScript
+- Axios
+- React Router DOM
+
+### Backend
+
+- Node.js
+- Express.js
+
+### Database
+
+- MongoDB
+- Mongoose
+
+### Authentication
+
+- JWT
+- bcrypt
+
+---
+
+## External API
+
+### Adzuna Job Search API
+
+### Base URL
+
+```text
 https://api.adzuna.com/v1/api
-Job Search Endpoint
+```
+
+### Job Search Endpoint
+
+```text
 https://api.adzuna.com/v1/api/jobs/gb/search/1
-Authenticated API Request
+```
+
+### Authenticated Request
+
+```text
 https://api.adzuna.com/v1/api/jobs/gb/search/1?app_id=YOUR_APP_ID&app_key=YOUR_APP_KEY
-Why This API?
+```
+
+### Why This API?
 
 The Adzuna API provides real-time job listings from multiple job boards.
 
-It allows users to search jobs by:
+The application will allow users to:
 
-Keyword
-Location
-Salary
-Company
-Category
+- Search jobs by keyword
+- Search by location
+- View salary information
+- View company information
+- Open the original job posting
 
-This API makes the application display live job opportunities instead of static data.
+---
 
-Data Retrieved from the API
+## Data Retrieved
 
-The application will retrieve:
+- Job Title
+- Company Name
+- Location
+- Salary
+- Job Description
+- Category
+- Contract Type
+- Redirect URL
+- Posting Date
 
-Job Title
-Company Name
-Job Description
-Job Location
-Salary
-Job Category
-Contract Type
-Job URL
-Posting Date
-Features
-User Authentication
-Register
-Login
-Logout
-Secure Password Encryption
-Job Search
+---
 
-Users can search jobs using keywords.
+## Features
 
-Example:
+### User Authentication
 
-React Developer
-Software Engineer
-Frontend Developer
-Save Jobs
+- Register
+- Login
+- Logout
+- Secure password encryption
+
+### Job Search
+
+Users can search for jobs such as:
+
+- Software Engineer
+- React Developer
+- Frontend Developer
+
+### Save Jobs
 
 Users can save jobs for later.
 
-Application Tracker
+### Application Tracker
 
-Users can update application status.
+Application status includes:
 
-Example statuses:
+- Saved
+- Applied
+- Interview
+- Offer
+- Rejected
 
-Saved
-Applied
-Interview
-Offer
-Rejected
-User Dashboard
+### Dashboard
 
-Dashboard will display:
+Users can view:
 
-Saved Jobs
-Applied Jobs
-Interview Jobs
-Favorite Jobs
-Search Filters
+- Saved Jobs
+- Applied Jobs
+- Interview Jobs
+- Favorite Jobs
 
-Users can filter jobs by:
+---
 
-Location
-Salary
-Company
-Job Category
-Database Collections
-Users
+## Database Collections
+
+### Users
+
+```javascript
 {
-name,
-email,
-password
+  name,
+  email,
+  password
 }
-Saved Jobs
+```
+
+### Saved Jobs
+
+```javascript
 {
-userId,
-jobId,
-title,
-company,
-location,
-salary,
-status,
-savedDate
+  userId,
+  jobId,
+  title,
+  company,
+  location,
+  salary,
+  status,
+  savedDate
 }
-API Example
-Request
+```
+
+---
+
+## API Example
+
+### Request
+
+```javascript
 axios.get(
-"https://api.adzuna.com/v1/api/jobs/gb/search/1",
+  "https://api.adzuna.com/v1/api/jobs/gb/search/1",
+  {
+    params: {
+      app_id: "YOUR_APP_ID",
+      app_key: "YOUR_APP_KEY",
+      what: "Software Engineer",
+      where: "London",
+    },
+  }
+);
+```
+
+### Example Response
+
+```json
 {
-params:{
-app_id:"YOUR_APP_ID",
-app_key:"YOUR_APP_KEY",
-what:"Software Engineer",
-where:"London"
+  "title": "Software Engineer",
+  "company": {
+    "display_name": "Google"
+  },
+  "location": {
+    "display_name": "London"
+  },
+  "salary_min": 65000,
+  "salary_max": 90000,
+  "redirect_url": "https://..."
 }
-})
-Example Response
-{
-"title":"Software Engineer",
-"company":{
-"display_name":"Google"
-},
-"location":{
-"display_name":"London"
-},
-"salary_min":65000,
-"salary_max":90000,
-"redirect_url":"https://..."
-}
-User Flow
+```
+
+---
+
+## User Flow
+
+```text
 Home Page
-
-↓
-
-Register/Login
-
-↓
-
+    ↓
+Register / Login
+    ↓
 Search Jobs
-
-↓
-
+    ↓
 View Job Details
-
-↓
-
+    ↓
 Save Job
-
-↓
-
+    ↓
 Apply Job
-
-↓
-
+    ↓
 Update Status
-
-↓
-
+    ↓
 Dashboard
-
-↓
-
+    ↓
 Logout
-Future Enhancements
-Resume Upload
-Email Notifications
-AI Job Recommendations
-Company Reviews
-Interview Notes
-Dark Mode
-Mobile Responsive Design
-Project Goals
-Build a full-stack MERN application.
-Integrate a third-party REST API (Adzuna).
-Implement secure user authentication.
-Store user data in MongoDB.
-Allow users to manage and track job applications.
-Create a responsive and user-friendly interface.
+```
+
+---
+
+## Future Enhancements
+
+- Resume Upload
+- Email Notifications
+- AI Job Recommendations
+- Company Reviews
+- Interview Notes
+- Dark Mode
+- Mobile Responsive Design
+
+---
+
+## Project Goals
+
+- Build a full-stack MERN application.
+- Integrate the Adzuna REST API.
+- Implement secure authentication.
+- Store user data in MongoDB.
+- Track job applications.
+- Build a responsive user interface.
+
+---
+
+## Author
+
+**Jamshed Ali Sher**
+
+Springboard Software Engineering Career Track
